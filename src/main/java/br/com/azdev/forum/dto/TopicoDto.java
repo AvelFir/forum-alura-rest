@@ -3,7 +3,6 @@ package br.com.azdev.forum.dto;
 import br.com.azdev.forum.modelo.Topico;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +18,8 @@ public class TopicoDto {
         this.mensagem = topico.getMensagem();
         this.dataCriacao = topico.getDataCriacao();
     }
+
+
     public Long getId() {
         return id;
     }

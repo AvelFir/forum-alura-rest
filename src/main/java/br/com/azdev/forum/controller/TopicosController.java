@@ -1,20 +1,30 @@
 package br.com.azdev.forum.controller;
 
-import br.com.azdev.forum.dto.TopicoDto;
-import br.com.azdev.forum.modelo.Curso;
-import br.com.azdev.forum.modelo.Topico;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.List;
+import br.com.azdev.forum.dto.TopicoDto;
+import br.com.azdev.forum.modelo.Topico;
+import br.com.azdev.forum.repository.TopicoRepository;
 
 @RestController
 public class TopicosController {
+	
+	@Autowired
+	private TopicoRepository topicoRepository;
+	
+	@RequestMapping("/topicos")
+	public List<TopicoDto> lista(String nomeCurso) {
+		if (nomeCurso == null) {
+			List<Topico> topicos = topicoRepository.findAll();
+			return TopicoDto.converter(topicos);
+		} else {
+			List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+			return TopicoDto.converter(topicos);
+		}
+	}
 
-    @RequestMapping("/topicos")
-    public List<TopicoDto> lista(){
-        Topico topico = new Topico("Duvida","Duvida com Spring", new Curso("Spring","Programação"));
-        return TopicoDto.converter(Arrays.asList(topico, topico, topico));
-    }
 }
