@@ -4,15 +4,17 @@ import br.com.azdev.forum.modelo.Curso;
 import br.com.azdev.forum.modelo.Topico;
 import br.com.azdev.forum.repository.CursoRepository;
 
-import javax.validation.constraints.Max;
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class TopicoForm {
 
-    @NotNull @NotBlank @Size(min = 5)
+    @NotNull @Size(min = 5)
     private String titulo;
+
+
     @NotNull @NotBlank @Size(min = 10)
     private String mensagem;
     @NotNull @NotBlank
